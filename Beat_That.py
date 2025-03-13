@@ -17,18 +17,20 @@ def swap(active_player):
 
 
 #first and second should be "1" or "2"
-def round(starter):
-    active_player = starter
+def round(active_player):
 
+    #get first roll and set it to highest
     print("")
     print(f"Player {active_player} starts: ")
     highest = roll_dice()
     print(f"Player {active_player} rolls {highest}")
 
-
+    #get second player's roll
     active_player = swap(active_player)
     new = roll_dice()
     print(f"Player {active_player} rolls {new}")
+
+    #alternate turns and continue rolling as long as the new roll is higher than the old
     while new > highest:
         highest = new
         active_player = swap(active_player)
@@ -56,9 +58,12 @@ def main():
     print("If they succeed, continue in this manner. If they fail, the first player adds the largest number to their score.")
     print("The first player to reach 100 points wins.")
 
+    #setup
     player1_score = 0
     player2_score = 0
     active_player = "1"
+
+    #play rounds and add the round total to the winner's total score until one player's total score is 100 or more
     while player1_score < 100 and player2_score < 100:
         winner, round_total = round(active_player)
         if winner == "1":
@@ -69,7 +74,7 @@ def main():
         print(f"Player 2 score: {player2_score}")
         active_player = swap(active_player)
 
-
+    #declare a winner
     print("")
     if player1_score >= 100:
         print("Player 1 wins!")

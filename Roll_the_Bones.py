@@ -24,13 +24,17 @@ def roll_bones():
     done = "n"
 
     while done != "y":
+        #ask user for valid guess
         guess = int(input("Enter your guess (5-30): "))
         while not (5 <= guess <= 30):
             print("Invalid guess, please enter an integer between 5 and 30.")
             guess = int(input("Enter your guess (5-30): "))
+
+        #get actual dice total
         dice_total = roll_dice(5)
         print(f"The dice total was {dice_total}.")
 
+        #determine points earned and add them to total
         if guess == dice_total:
             total_points += 50
             print("You win 50 points!")
@@ -40,12 +44,16 @@ def roll_bones():
         else:
             total_points += (5-guess)
             print(f"You lose {guess-5} points.")
-
+        
+        #keep track of average score per turn
         turn_count += 1
         avg_points = total_points / turn_count
 
+        #print out info for round
         print(f"Total points: {total_points}")
         print(f"Average points per turn: {avg_points}")
+
+        #ask user if they are finished or not
         done = (input("Are you done? (y/n): ")).lower()
         while done != "n" and done != "y":
             print("Invalid input.")
