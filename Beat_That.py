@@ -16,7 +16,7 @@ def swap(active_player):
         return "1"
 
 
-#first and second should be "1" and "2" or "2" and "1"
+#first and second should be "1" or "2"
 def round(starter):
     active_player = starter
 
